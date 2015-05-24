@@ -2,8 +2,9 @@
 
 **discussions** is the repository for the discussions of the EPICS motor working group
 
-The APS is interested in forming a working group to discuss the development of the EPICS motor support.  Occasionally, the group might meet in person, perhaps at an EPICS collaboration meeting. Typically, the EPICS motor working group will meet in the internet using one of the collaboration technologies. 
+## Overview
 
+The APS is interested in forming a working group to discuss the development of the EPICS motion controls support.  Occasionally, the group might meet in person, perhaps at an EPICS collaboration meeting. Typically, the EPICS motor working group will meet in the internet using one of the collaboration technologies. 
 
 This effort is to direct the future of motion control software support.  Existing support works for many single-axis controllers (includes controllers providing multiple axes, each operating independently).  More advanced features, such as coordinated multi-axis control are not within the feature set of the motor record we have now.  Yet scientists are presenting equipment with such needs (such as hexapod) and requests for such coordination (multi-axis coordinated scans such as X-ray energy of monochromator and undulator).  And more advanced controllers provide features such as motor grouping for which implementation in the motor record is problematic at the least.
 
