@@ -1,0 +1,13 @@
+On 5/22/2015 6:55 AM, Torsten Bögershausen wrote by email:
+
+we collected some basic ideas:
+- coordinated motion of axis groups
+- motion position read back (an array of positions when the movement is done)
+- (generic) EPICS insterface for generating trigger pulses at the GPIO at the motion controller
+- Re-partition the logic inside the motor record and the driver
+- keep EPICS motor record interface to the outside world, so that other applications still
+  can work with the motor record.
+- Most probably move some code/logic/state machines/code from motorrecord into the driver,
+  we may call it model4 driver (if we want)
+- We didn't talk about V4, but I think it makes sense
+
