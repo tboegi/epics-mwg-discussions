@@ -44,6 +44,9 @@ without using the motor record drivers.  This was done for the Newport XPS, the 
 the Aerotech Ensemble (single-axis complex motion only).  The XPS SNL implementation has since
 been replaced by the Model 3 "Profile move" API.  The MAXv and Ensemble implementations are still SNL 
 
+This is [an incomplete document that describes the Model 3 architecture and API]
+(https://subversion.xray.aps.anl.gov/synApps/motor/trunk/documentation/motorDeviceDriver.html).
+
 ## Statement of the problem
 ### Multi-axis complex coordinated motion
 The Model 3 driver contains an API for complex coordinated motion called ProfileMove.
