@@ -48,9 +48,9 @@ been replaced by the Model 3 "Profile move" API.  The MAXv and Ensemble implemen
 ### Multi-axis complex coordinated motion
 The Model 3 driver contains an API for complex coordinated motion called ProfileMove.
 This is a capability that many modern controllers implement.  However, the ProfileMove API
-was based largely on the capabilities of the Newport XPS controller.  It is not know how
+was based largely on the capabilities of the Newport XPS controller.  It is not known how
 well this API will work for other controllers.  
-The API defines the complex coordinated motion via a set of positoin and velocity arrays
+The API defines the complex coordinated motion via a set of position and velocity arrays
 for each axis, and a global array of time points for each entry in the position and velocity arrays.
 The API also defines the parameters for pulse output during the complex motion (to trigger detectors)
 and position capture for reading back the actual encoder positions when each trigger pulse was
@@ -70,7 +70,7 @@ It also has a number of significant limitations:
  
 However, a large number of existing EPICS clients use the motor record field names 
 (e.g. SPEC, pyEpics, IDL classes, etc.).  
-It is therefore very difficult to completely eliminated the motor record.
+It is therefore very difficult to completely eliminate the motor record.
 
 ### Other
 There is currently no standard interface for such operations as the following:
@@ -81,11 +81,50 @@ There is currently no standard interface for such operations as the following:
     when an axis position crosses a preset position or is within a certain position window.
 
 ## Requirements
-### Multi-axis complex coordinated motion
+### Multi-axis complex coordinated motion (CCM)
+#### Ability to create a group of axes that will participate in a CCM.
+#### Ability to create multiple such groups, either within a single controller or across
+     controllers if the hardware supports that (e.g. Macro Ring on Delta Tau).
+#### Ability to define the target positions for each axis at each time point in the CCM
+     as an array of points.
+#### Ability to define an array of time points for each entry in the position array.
+#### Ability to verify the validity of a CCM before executing it.
+#### Ability to start and stop the execution of a CCM
 
 ### Position capture
+#### Ability to define the information to be captured.  Examples include:
+  - Theoretical axis position
+  - Actual encoder position
+  - Following error (actual minus theoretical)
+  - Theoretical velocity
+  - Actual velocity
+  - TTL input levels
+#### Ability to define the trigger mode to capture positions.  Examples include:
+  - Internal clock
+  - External pulse
+#### Ability to specify the maximum number of position capture samples
+#### Ability to start and stop the position capture
 
 ### Position compare/pulse output
+#### Ability to define a position or condition where an axis will start to output trigger pulses
+#### Ability to define a position or condition where an axis will stop outputting trigger pulses
+#### Ability to define the mode for the interval between pulses: time or distance
+#### Ability to define the distance or time between trigger pulses
 
 ## Strawman for Proposed Implementation
+The following is a strawman proposal for implementing an enhanced motor interface.
 
+- Move the state machine from the motor record into the base asynMotorController and
+  asynMotorAxis classes.
+
+- Create a new EPICS database that implements as base EPICS records most of the fields in the
+  existing motor record.  Thus a VELO or Velocity ao record, rather than the .VELO field.  
+  New clients should talk to this API rather than the motor record.
+
+- Rewrite the motor record to be a thin layer that preserves the existing record field names so
+  that existing clients will continue to work.
+  
+- Implement database and base class methods for the Position Capture and Position Compare functions.
+
+- Modify the existing ProfileMove API for complex coordinated motion as needed to make it more
+  general.
