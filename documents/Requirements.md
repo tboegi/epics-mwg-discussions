@@ -55,6 +55,7 @@ was based largely on the capabilities of the Newport XPS controller.  It is not 
 well this API will work for other controllers.  
 The API defines the complex coordinated motion via a set of position and velocity arrays
 for each axis, and a global array of time points for each entry in the position and velocity arrays.
+
 The API also defines the parameters for pulse output during the complex motion (to trigger detectors)
 and position capture for reading back the actual encoder positions when each trigger pulse was
 output.  It is likely that a better implementation would have separate APIs for pulse output
@@ -65,7 +66,7 @@ The motor record is intrincally a single-axis object.  It implements the state m
 of a single axis, including backlash, retries, etc.  The motor record is widely perceived as being
 very complex and hard to understand.  
 
-It also has a number of significant limitations:
+It also has a number of significant limitations, including:
  - PID parameters are only scaled values (0 to 1) which does not map well to many controllers
  - The RAW position is forced to have integer values, and this is the position that is written
    to and read from the driver layer.  This does not map well to controllers that work in 
@@ -79,9 +80,10 @@ It is therefore very difficult to completely eliminate the motor record.
 There is currently no standard interface for such operations as the following:
   - Position capture.  Many controllers can capture theoretical and encoder positions at
     high rates either through an internal timer or via an external trigger.  Such position
-    capture is very useful for tuning PID loops.
+    capture is very useful for tuning PID loops, looking for vibrations, etc.
   - Position compare.  Many controllers have the ability to output a pulse or pulse train
-    when an axis position crosses a preset position or is within a certain position window.
+    when an axis position crosses a preset position or is within a certain position window. This
+    is very useful for triggering detectors, opening and closing shutters, etc.
 
 ## Requirements
 ### Multi-axis complex coordinated motion (CCM)
@@ -128,6 +130,10 @@ The following is a strawman proposal for implementing an enhanced motor interfac
   that existing clients will continue to work.
   
 - Implement database and base class methods for the Position Capture and Position Compare functions.
+  This would be done as it is done in areaDetector.  There is a standard set of records that
+  drivers implement if they can.  Drivers can redefined enum choices, for example, if the controller
+  requires a different set of choices for a given parameter.  Controller-specific parameters
+  and records are used where the base class is not sufficient.
 
 - Modify the existing ProfileMove API for complex coordinated motion as needed to make it more
   general.
