@@ -45,9 +45,47 @@ the Aerotech Ensemble (single-axis complex motion only).  The XPS SNL implementa
 been replaced by the Model 3 "Profile move" API.  The MAXv and Ensemble implementations are still SNL 
 
 ## Statement of the problem
+### Multi-axis complex coordinated motion
+The Model 3 driver contains an API for complex coordinated motion called ProfileMove.
+This is a capability that many modern controllers implement.  However, the ProfileMove API
+was based largely on the capabilities of the Newport XPS controller.  It is not know how
+well this API will work for other controllers.  
+The API defines the complex coordinated motion via a set of positoin and velocity arrays
+for each axis, and a global array of time points for each entry in the position and velocity arrays.
+The API also defines the parameters for pulse output during the complex motion (to trigger detectors)
+and position capture for reading back the actual encoder positions when each trigger pulse was
+output.  It is likely that a better implementation would have separate APIs for pulse output
+and position capture.
 
+### Motor record
+The motor record is intrincally a single-axis object.  It implements the state machine for motion
+of a single axis, including backlash, retries, etc.  The motor record is widely perceived as being
+very complex and hard to understand.  
+
+It also has a number of significant limitations:
+ - PID parameters are only scaled values (0 to 1) which does not map well to many controllers
+ - The RAW position is forced to have integer values, and this is the position that is written
+   to and read from the driver layer.  This does not map well to controllers that work in 
+   engineering units.
+ 
+However, a large number of existing EPICS clients use the motor record field names 
+(e.g. SPEC, pyEpics, IDL classes, etc.).  
+It is therefore very difficult to completely eliminated the motor record.
+
+### Other
+There is currently no standard interface for such operations as the following:
+  - Position capture.  Many controllers can capture theoretical and encoder positions at
+    high rates either through an internal timer or via an external trigger.  Such position
+    capture is very useful for tuning PID loops.
+  - Position compare.  Many controllers have the ability to output a pulse or pulse train
+    when an axis position crosses a preset position or is within a certain position window.
 
 ## Requirements
+### Multi-axis complex coordinated motion
+
+### Position capture
+
+### Position compare/pulse output
 
 ## Strawman for Proposed Implementation
 
