@@ -82,34 +82,34 @@ There is currently no standard interface for such operations as the following:
 
 ## Requirements
 ### Multi-axis complex coordinated motion (CCM)
-#### Ability to create a group of axes that will participate in a CCM.
-#### Ability to create multiple such groups, either within a single controller or across
+  - Ability to create a group of axes that will participate in a CCM.
+  - Ability to create multiple such groups, either within a single controller or across
      controllers if the hardware supports that (e.g. Macro Ring on Delta Tau).
-#### Ability to define the target positions for each axis at each time point in the CCM
+  - Ability to define the target positions for each axis at each time point in the CCM
      as an array of points.
-#### Ability to define an array of time points for each entry in the position array.
-#### Ability to verify the validity of a CCM before executing it.
-#### Ability to start and stop the execution of a CCM
+  - Ability to define an array of time points for each entry in the position array.
+  - Ability to verify the validity of a CCM before executing it.
+  - Ability to start and stop the execution of a CCM
 
 ### Position capture
-#### Ability to define the information to be captured.  Examples include:
-  - Theoretical axis position
-  - Actual encoder position
-  - Following error (actual minus theoretical)
-  - Theoretical velocity
-  - Actual velocity
-  - TTL input levels
-#### Ability to define the trigger mode to capture positions.  Examples include:
-  - Internal clock
-  - External pulse
-#### Ability to specify the maximum number of position capture samples
-#### Ability to start and stop the position capture
+  - Ability to define the information to be captured.  Examples include:
+    - Theoretical axis position
+    - Actual encoder position
+    - Following error (actual minus theoretical)
+    - Theoretical velocity
+    - Actual velocity
+    - TTL input levels
+  - Ability to define the trigger mode to capture positions.  Examples include:
+    - Internal clock
+    - External pulse
+  - Ability to specify the maximum number of position capture samples
+  - Ability to start and stop the position capture
 
 ### Position compare/pulse output
-#### Ability to define a position or condition where an axis will start to output trigger pulses
-#### Ability to define a position or condition where an axis will stop outputting trigger pulses
-#### Ability to define the mode for the interval between pulses: time or distance
-#### Ability to define the distance or time between trigger pulses
+  - Ability to define a position or condition where an axis will start to output trigger pulses
+  - Ability to define a position or condition where an axis will stop outputting trigger pulses
+  - Ability to define the mode for the interval between pulses: time or distance
+  - Ability to define the distance or time between trigger pulses
 
 ## Strawman for Proposed Implementation
 The following is a strawman proposal for implementing an enhanced motor interface.
