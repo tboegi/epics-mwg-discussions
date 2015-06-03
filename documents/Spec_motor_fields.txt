@@ -1,0 +1,36 @@
+
+Subject: Re: EPICS motor fields used by spec
+From: Gerry Swislow <gerry@certif.com>
+
+These are what spec currently uses:
+
+ACCL
+BDST
+BVEL
+DHLM
+DIR
+DLLM
+DMOV
+ERES
+FOFF
+HLS
+LLS
+MRES
+OFF
+RRBV
+RVAL
+SET
+SPMG
+STOP
+UEIP
+VAL
+VBAS
+VELO
+VERS
+
+If VERS indicates the motor record is version 4.4 or earlier, spec will use=
+ RES.
+
+I hope that helps!
+
+- Gerry
