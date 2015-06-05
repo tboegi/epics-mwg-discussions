@@ -72,6 +72,18 @@ It also has a number of significant limitations, including:
    to and read from the driver layer.  This does not map well to controllers that work in 
    engineering units.
  
+Side note:
+modern motion control units have many more parameters to be controlled:
+ - PID for current control, PID for velocity control, PID for position control
+ - Jerk to be applied to the axis
+ - Torque control
+ - Overtrip current
+
+These parameters are vendor-specific, a value of e.g. 0.6 for one controller means a completely
+different thing for another controller.
+My resumeé is that we can leave PCOF, ICOF and DCOF in the motor record for legacy reasons.
+Additional ao/ai records can be used to configure vendor specific parameters.
+
 However, a large number of existing EPICS clients use the motor record field names 
 (e.g. SPEC, pyEpics, IDL classes, etc.).  
 It is therefore very difficult to completely eliminate the motor record.
