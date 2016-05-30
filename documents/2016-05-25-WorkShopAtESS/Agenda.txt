@@ -1,0 +1,45 @@
+Here is the suggested Agenda for 2 hours workshop:
+
+Introduction, 5 minutes
+
+Short round table 10 minutes
+
+  - who is who and doing what ?
+
+Presentations:
+  - Mark Rivers
+  - Gary Yendell
+  - Dragutin Maier-Manojlovic
+
+Long round table:
+  - fully powerpointfree
+  - Additional experience
+  - status or just
+  - No big experience
+
+Discussions:
+  Are you familiar with what Mark presented ?
+    - Model 3 driver ?
+    - motorRecord
+    - patches for motorRecord ? 
+
+  Community - 15 minutes
+   - Read the EPICS mailing list tech-talk
+   - Code on a public repo (github, others ?)
+   - Planned developments
+ 
+
+  Coordinated multi axis - 15 minutes
+   - Axis groups
+   - Virtual axes
+   - Logical axis
+   - profile move
+
+  Applications - 15 minutes
+   - Position read back
+   - Wirescanner
+   - Usage of GPIO
+
+
+Summary - 15 minutes
+
