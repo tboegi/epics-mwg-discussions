@@ -1,0 +1,42 @@
+EPICS motion control workshop at ESS,
+2016-05-25, 15:45..17:45
+
+> More than 25 participants
+
+> 3 short PPT talks:
+  - Mark Rivers,                        EPICS Motor Support
+  - Gary Yendell,Observatory Sciences:  EPICS module for PMAC Control
+  - Dragutin Maier-Manojlovic:          Experiences with DT PowerBrick at PSI
+
+> 2 PPT-less talks:
+  - Steven Hartman, SNS
+    SNS moving beamlines to EPICS, mainly Parker 6k.
+    Most of their motion they are achieving with/on
+    normal network time scales so not sure where the drive for time
+    requirements at ESS comes from.
+
+  - Freddie Akeroyd, ISIS
+    ISIS using EPICS model 3 Galil driver written by Mark Clift at
+    Australian Synchrotron.
+    Synchronisation across department borders can be difficult
+    e.g. monochrometer and crystal which are controlled by different systems.
+
+> Round table
+  - New people getting into EPICS and motion, training needed
+  - Some training has been done at DLS from Observatory Science
+
+  - EtherCAT and TwinCAT is used succesfully
+    (PSI, STFC Daresbury Lab, ISIS)
+     
+  - Some people use motorRecord, some not
+  - The "model 3 profile move" is not used so often in practice
+    as it could be. Mark Rivers is interested in feedback
+    how well the API works on other controllers
+
+My conclusion:
+  - good to here what others are doing
+  - mixture from beginners to highly experienced people
+  - good to bring people together
+  - Interest for training
+  - Forum for EPICS motion needed,
+    (Mocraf seems to cover more low level)
