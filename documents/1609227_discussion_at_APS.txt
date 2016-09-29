@@ -1,0 +1,71 @@
+Meetings at APS, 20016 September 26 + 27
+
+Jeff Kirchman (partly)
+Joe Sullivan
+Kevin Peterson
+Mark Rivers
+Pete Jemian
+Ron Sluiter
+Tim Mooney
+Torsten Bögershausen
+
+
+Background:
+
+We have currently many production installations
+using motorRecord.
+
+A zoo of many different controllers is used.
+
+Changing a single line of code means testing, testing, testing to
+make sure that this change does not break anything on a beamline.
+
+On the other hand there is a group of users which need
+smaller or bigger code changes and which have the possiblity to
+test changes.
+
+We acknowledge that there are 2 user communities.
+
+There is a way forward:
+
+- Short term
+  Copy the exiting code from motorRecord from github
+  epics-modules/ to epics-motor-wg/
+- Rename the motorRecord into axisRecord
+- Remove all model1/model2 drivers, with the motivation
+  that the device support interface most likely will change
+  sooner or later.
+- This setup is the base for further development & test
+  Once it is mature enough, the new code will be moved
+  to epics-modules.
+  Model[1|2] may either
+   - stay as they are today inside the motor module
+   - be re-written as model 3
+
+- How to start
+  Today we don't have automateted tests.
+  There are some basic tests at SNS and some other at ESS.
+  Take the best from these 2 and we will have a basic test suite.
+  ESS has a TCP/IP based simulator, which has been used to test different
+  drivers. Currently there is even a PR on github/motor.
+  After reading it with fresh eyes I think we are nearly there.
+
+- Next steps, first things first:
+  - Homing from a limit switch
+  - DLY - STOP
+  - MRES with modern controllers
+
+
+Practical details:
+- The conversion of motor into axis has started as a prototype,
+ https://github.com/EuropeanSpallationSource/motor/tree/160707_motor_becomes_axis
+
+- Automated test scripts needs to be stolen from
+  https://github.com/mp49/motor-test
+  and
+  https://github.com/EuropeanSpallationSource/MCAG_Base_Project/tree/master/epics/test
+
+- The simulator needs to be stolen from
+  https://github.com/epics-modules/motor/pull/2
+  And other sources, on ESS internal Gits, not on github
+  
